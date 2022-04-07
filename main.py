@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from glob import glob
 
-file_name = 'BAYPORT BATCH 0158 (002)'
+file_name = 'BAYPORT BATCH 0194'
 path = fr'I:/CREDIT/CREDIT ADMIN/PCA Batch Schedules/{file_name}.xlsx'
 workbook = pd.read_excel(path, sheet_name=None)
 # workbook.popitem()
@@ -12,7 +12,7 @@ work_dict = workbook.items()
 for sheet_name, sheet in work_dict:
     if sheet_name != "SUMMARY":
         period = sheet_name.split('-')[1]
-        sheet['PERIOD'] = period
+        sheet['PERIOD'] = f'{period[-2:]}-{period[:-3].capitalize()}'
         print(sheet_name.split('-')[1])
         workbook[sheet_name] = sheet
         print(workbook[sheet_name].head())
